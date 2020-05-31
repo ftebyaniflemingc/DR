@@ -26,7 +26,7 @@ body, #viewDiv {
   visibility: hidden;
 }
 
-.year-item {
+.yritem {
   background-color: rgba(50,50,50,0.5);
   color: #fff;
   margin: 1px;
@@ -38,7 +38,7 @@ body, #viewDiv {
   height: 40px;
 }
 
-.visible-year {
+.vsbyr {
   color: #fff;
   background-color: rgba(50,50,50,0.9);
 }
@@ -50,16 +50,20 @@ body, #viewDiv {
   display: grid;
   grid-template-columns: 60px 75px 75px 75px 75px;
   grid-template-rows: 75px 75px 75px 75px 40px;
-  grid-template-areas: "row-label1 canvas canvas canvas canvas" "row-label2 canvas canvas canvas canvas" "row3 canvas canvas canvas canvas" "row4 canvas canvas canvas canvas" ". col1 col2 col3 col4";
+  grid-template-areas: "rwlb0 canvas canvas canvas canvas" "rwlb1 canvas canvas canvas canvas" 
+                       "rw2 canvas canvas canvas canvas" "rw3 canvas canvas canvas canvas" "rw4 canvas canvas canvas canvas"
+                        "rw5 canvas canvas canvas canvas" "rw6 canvas canvas canvas canvas" "rw7 canvas canvas canvas canvas"
+                        "rw8 canvas canvas canvas canvas" "rw9 canvas canvas canvas canvas" 
+                       ". cl0 cl1 cl2 cl3 ";
 
   justify-items: stretch;
   align-items: stretch;
 }
-.col-label {
+.cllb {
   justify-self: center;
   padding: 12px;
 }
-.row-label {
+.rwlb {
   align-self: center;
   justify-self: end;
   padding: 12px;
@@ -69,14 +73,14 @@ body, #viewDiv {
   width: 100%;
   height: 100%;
 }
-.col1 { grid-area: col1; }
-.col2 { grid-area: col2; }
-.col3 { grid-area: col3; }
-.col4 { grid-area: col4; }
-.row-label1 { grid-area: row-label1; }
-.row-label2 { grid-area: row-label2; }
-.row3 { grid-area: row3; }
-.row4 { grid-area: row4; }
+.cl1 { grid-area: cl1; }
+.cl2 { grid-area: cl2; }
+.cl3 { grid-area: cl3; }
+.cl4 { grid-area: cl4; }
+.rw-label1 { grid-area: rwlb1; }
+.rw-label2 { grid-area: rwlb2; }
+.rw3 { grid-area: rw3; }
+.rw4 { grid-area: rw4; }
 
 #titleDiv {
  padding: 10px;
