@@ -3,8 +3,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Sought Durham Region Housin(2010-2019)</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
-    <link rel="stylesheet" href="app/main.css">
+    //<link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
+    <link rel="stylesheet" href="app/style.css">
 
     <script>
       var locationPath = location.pathname.replace(/\/[^\/]+$/, "");
@@ -25,6 +25,13 @@
       <div class="Year-item visible-Year" data-Year="2011">2011</div>
       <div class="Year-item visible-Year" data-Year="2012">2012</div>
       <div class="Year-item visible-Year" data-Year="2013">2013</div>
+      <div class="Year-item visible-Year" data-Year="2014">2013</div>
+      <div class="Year-item visible-Year" data-Year="2015">2013</div>
+      <div class="Year-item visible-Year" data-Year="2016">2013</div>
+      <div class="Year-item visible-Year" data-Year="2017">2013</div>
+      <div class="Year-item visible-Year" data-Year="2018">2013</div>
+      <div class="Year-item visible-Year" data-Year="2019">2013</div>
+      
     </div>
     <div id="viewDiv"></div>
     <div id="chartDiv" class="chart-widget esri-widget">
@@ -40,13 +47,19 @@
         <div class="row-label2 row-label">2011</div>
         <div class="row3 row-label">2012</div>
         <div class="row4 row-label">2013</div>
+        <div class="row4 row-label">2014</div>
+        <div class="row4 row-label">2015</div>
+        <div class="row4 row-label">2016</div>
+        <div class="row4 row-label">2017</div>
+        <div class="row4 row-label">2018</div>
+        <div class="row4 row-label">2019</div>
         <button class="esri-widget--button" id="resetBtn" type="button" title="Clear Filter">Reset</button>
         <div id="titleDiv" class="esri-widget">
-          <div id="titleText">Flash Floods by Year</div>
-          <div id="dataDescription">Flash Flood Warnings (2002 - 2012)</div>
+          <div id="titleText">Durham Housing 2010 - 2019</div>
+          <div id="dataDescription">Durham Housing (2010 - 2019)</div>
         </div>
       </div>
     </div>
-    <script>require(["app/main"]);</script>
+    <script>require(["app/style"]);</script>
   </body>
 </html>
