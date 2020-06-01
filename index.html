@@ -6,7 +6,7 @@
   <title>Sought Durham Region Housin(2010-2019)</title>
    <link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/css/main.css">
+  //<link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/css/main.css">
   <script src="https://js.arcgis.com/4.15/"></script>
  <script>
      require([
@@ -14,15 +14,15 @@
       "esri/views/MapView"
     ], function(Map, MapView) {
 
-      var map = new Map({
+      var themap = new Map({
         basemap: "gray-vector"
       });
 
       var view = new MapView({
         container: "viewDiv",
-        map: map,
+        map: themap,
         center: [43.914656, -78.871866],
-        zoom: 11
+        zoom: 10
       });
 
     });
