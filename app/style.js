@@ -38,11 +38,11 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
     var _this = this;
     Object.defineProperty(exports, "__esModule", { value: true });
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        function filterBySeason(event) {
-            var selectedSeason = event.target.getAttribute("data-year");
-            seasonsNodes.forEach(function (node) {
+        function filterByYear(event) {
+            var selectedYear = event.target.getAttribute("data-year");
+            yearsNodes.forEach(function (node) {
                 var year = node.innerText;
-                if (year !== selectedSeason) {
+                if (year !== selectedYear) {
                     if (node.classList.contains("visible-year")) {
                         node.classList.remove("visible-year");
                     }
@@ -54,7 +54,7 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                 }
             });
             layerView.filter = new FeatureFilter({
-                where: "year = '" + selectedSeason + "'"
+                where: "year = '" + selectedYear + "'"
             });
         }
         function resetOnCollapse(expanded) {
@@ -196,12 +196,12 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                 highlight.remove();
                 highlight = null;
             }
-            seasonsNodes.forEach(function (node) {
+            yearsNodes.forEach(function (node) {
                 node.classList.add("visible-year");
             });
             heatmapChart_1.updateGrid(layerStats, layerView, true);
         }
-        var layer, countiesLayer, map, view, seasonsElement, chartExpand, seasonsExpand, layerView, countiesLayerView, layerStats, seasonsNodes, highlight, previousId, resetBtn;
+        var layer, countiesLayer, map, view, yearsElement, chartExpand, yearsExpand, layerView, countiesLayerView, layerStats, yearsNodes, highlight, previousId, resetBtn;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -243,21 +243,21 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                     return [4 /*yield*/, view.when()];
                 case 1:
                     _a.sent();
-                    seasonsElement = document.getElementById("seasons-filter");
-                    seasonsElement.style.visibility = "visible";
+                    yearsElement = document.getElementById("years-filter");
+                    yearsElement.style.visibility = "visible";
                     chartExpand = new Expand({
                         view: view,
                         content: document.getElementById("chartDiv"),
                         expandIconClass: "esri-icon-chart",
                         group: "top-left"
                     });
-                    seasonsExpand = new Expand({
+                    yearsExpand = new Expand({
                         view: view,
-                        content: seasonsElement,
+                        content: yearsElement,
                         expandIconClass: "esri-icon-filter",
                         group: "top-left"
                     });
-                    view.ui.add(seasonsExpand, "top-left");
+                    view.ui.add(yearsExpand, "top-left");
                     view.ui.add(chartExpand, "top-left");
                     view.ui.add("titleDiv", "top-right");
                     return [4 /*yield*/, view.whenLayerView(layer)];
@@ -270,9 +270,9 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                 case 4:
                     layerStats = _a.sent();
                     heatmapChart_1.updateGrid(layerStats, layerView);
-                    seasonsElement.addEventListener("click", filterBySeason);
-                    seasonsNodes = document.querySelectorAll(".year-item");
-                    seasonsExpand.watch("expanded", resetOnCollapse);
+                    yearsElement.addEventListener("click", filterByYear);
+                    yearsNodes = document.querySelectorAll(".year-item");
+                    yearsExpand.watch("expanded", resetOnCollapse);
                     chartExpand.watch("expanded", resetOnCollapse);
                     highlight = null;
                     view.on("drag", ["Control"], eventListener);
