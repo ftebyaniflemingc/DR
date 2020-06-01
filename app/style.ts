@@ -11,7 +11,7 @@ import { SimpleRenderer } from "esri/renderers";
 import { updateGrid } from "./heatmapChart";
 
 import Expand = require("esri/widgets/Expand");
-import { durations, seasons } from "./constants";
+import { durations, years } from "./constants";
 
 ( async () => {
 
@@ -19,7 +19,7 @@ import { durations, seasons } from "./constants";
     portalItem: {
       id: "f9e348953b3848ec8b69964d5bceae02"
     },
-    outFields: [ "DurationClass", "SEASON" ]
+    outFields: [ "DurationClass", "YEAR" ]
   });
 
   const countiesLayer = new FeatureLayer({
@@ -55,21 +55,21 @@ import { durations, seasons } from "./constants";
   });
 
   await view.when();
-  const seasonsElement = document.getElementById("seasons-filter");
-  seasonsElement.style.visibility = "visible";
+  const yearsElement = document.getElementById("years-filter");
+  yearsElement.style.visibility = "visible";
   const chartExpand = new Expand({
     view,
     content: document.getElementById("chartDiv"),
     expandIconClass: "esri-icon-chart",
     group: "top-left"
   });
-  const seasonsExpand = new Expand({
+  const yearsExpand = new Expand({
     view,
-    content: seasonsElement,
+    content: yearsElement,
     expandIconClass: "esri-icon-filter",
     group: "top-left"
   });
-  view.ui.add(seasonsExpand, "top-left");
+  view.ui.add(yearsExpand, "top-left");
   view.ui.add(chartExpand, "top-left");
   view.ui.add("titleDiv", "top-right");
 
@@ -79,26 +79,26 @@ import { durations, seasons } from "./constants";
   const layerStats = await queryLayerStatistics(layer);
   updateGrid(layerStats, layerView);
   
-  seasonsElement.addEventListener("click", filterBySeason);
-  const seasonsNodes = document.querySelectorAll(`.season-item`);
+  yearsElement.addEventListener("click", filterByYear);
+  const yearsNodes = document.querySelectorAll(`.year-item`);
 
-  function filterBySeason (event: any) {
-    const selectedSeason = event.target.getAttribute("data-season");
-    seasonsNodes.forEach( (node:HTMLDivElement) => {
-      const season = node.innerText;
-      if(season !== selectedSeason){
-        if(node.classList.contains("visible-season")) {
-          node.classList.remove("visible-season");
+  function filterByYear (event: any) {
+    const selectedYear = event.target.getAttribute("data-Year");
+    yearsNodes.forEach( (node:HTMLDivElement) => {
+      const year = node.innerText;
+      if(year !== selectedYear){
+        if(node.classList.contains("visible-year")) {
+          node.classList.remove("visible-year");
         }
       } else {
-        if(!node.classList.contains("visible-season")) {
-          node.classList.add("visible-season");
+        if(!node.classList.contains("visible-year")) {
+          node.classList.add("visible-year");
         }
       }
     });
 
     layerView.filter = new FeatureFilter({
-      where: `Season = '${selectedSeason}'`
+      where: `Year = '${selectedYear}'`
     });
   }
 
@@ -108,7 +108,7 @@ import { durations, seasons } from "./constants";
     }
   }
 
-  seasonsExpand.watch("expanded", resetOnCollapse);
+  yearsExpand.watch("expanded", resetOnCollapse);
   chartExpand.watch("expanded", resetOnCollapse);
 
   let highlight:esri.Handle = null;
@@ -167,7 +167,7 @@ import { durations, seasons } from "./constants";
         statisticType: "count"
       })
     ];
-    query.groupByFieldsForStatistics = [ "SEASON + '-' + DurationClass" ];
+    query.groupByFieldsForStatistics = [ "YEAR + '-' + DurationClass" ];
     query.geometry = geometry;
     query.distance = distance;
     query.units = units;
@@ -177,11 +177,11 @@ import { durations, seasons } from "./constants";
 
     const responseChartData = queryResponse.features.map( feature => {
       const timeSpan = feature.attributes["EXPR_1"].split("-");
-      const season = timeSpan[0];
+      const year = timeSpan[0];
       const duration = timeSpan[1];
       return {
         duration,
-        season, 
+        year, 
         value: feature.attributes.value
       };
     });
@@ -197,17 +197,17 @@ import { durations, seasons } from "./constants";
         statisticType: "count"
       })
     ];
-    query.groupByFieldsForStatistics = [ "SEASON + '-' + DurationClass" ];
+    query.groupByFieldsForStatistics = [ "YEAR + '-' + DurationClass" ];
 
     const queryResponse = await layer.queryFeatures(query);
 
     const responseChartData = queryResponse.features.map( feature => {
       const timeSpan = feature.attributes["EXPR_1"].split("-");
-      const season = timeSpan[0];
+      const year = timeSpan[0];
       const duration = timeSpan[1];
       return {
         duration,
-        season, 
+        year, 
         value: feature.attributes.value
       };
     });
@@ -218,10 +218,10 @@ import { durations, seasons } from "./constants";
     let formattedChartData: ChartData[] = [];
 
     durations.forEach( (duration, t) => {
-      seasons.forEach( (season, s) => {
+      years.forEach( (year, s) => {
 
         const matches = data.filter( datum => {
-          return datum.season === season && datum.duration === duration;
+          return datum.year === year && datum.duration === duration;
         });
 
         formattedChartData.push({
@@ -246,8 +246,8 @@ import { durations, seasons } from "./constants";
       highlight.remove();
       highlight = null;
     }
-    seasonsNodes.forEach( (node:HTMLDivElement) => {
-      node.classList.add("visible-season");
+    yearsNodes.forEach( (node:HTMLDivElement) => {
+      node.classList.add("visible-year");
     });
     updateGrid(layerStats, layerView, true);
   }
