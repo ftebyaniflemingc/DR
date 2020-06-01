@@ -10,6 +10,27 @@ import { SimpleFillSymbol } from "esri/symbols";
 import { SimpleRenderer } from "esri/renderers";
 import { updateGrid } from "./heatmapChart";
 
+
+require([
+      "esri/Map",
+      "esri/views/MapView"
+    ], function(Map, MapView) {
+
+      var map = new Map({
+        basemap: "gray-vector"
+      });
+
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [43.914656, -78.871866],
+        zoom: 11
+      });
+
+    });
+
+
+/*
 import Expand = require("esri/widgets/Expand");
 import { durations, years } from "./constants";
 
@@ -253,3 +274,4 @@ import { durations, years } from "./constants";
   }
 
 })();
+*/
