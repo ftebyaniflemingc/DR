@@ -1,9 +1,36 @@
+
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sought Durham Region Housin(2010-2019)</title>
+   <link rel="stylesheet" href="app/style.css">
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.15/"></script>
+ <script>
+      var locationPath = location.pathname.replace(/\/[^\/]+$/, "");
+      window.dojoConfig = {
+        packages: [
+          {
+            name: "apps",
+            location: locationPath + "/app"
+          }
+        ]
+      };
+    </script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
+
+<!--- <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Sought Durham Region Housin(2010-2019)</title>
-    /* <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css"> */
+    
     <link rel="stylesheet" href="app/style.css">
 
     <script>
@@ -61,5 +88,6 @@
       </div>
     </div>
     <script>require(["apps/style"]);</script>
-  </body>
+  </body>//
 </html>
+-->
