@@ -117,7 +117,7 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                                     statisticType: "count"
                                 })
                             ];
-                            query.groupByFieldsForStatistics = ["year + '-' + DurationClass"];
+                            query.groupByFieldsForStatistics = ["year + '-' + CtClass"];
                             query.geometry = geometry;
                             query.distance = distance;
                             query.units = units;
@@ -128,9 +128,9 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                             responseChartData = queryResponse.features.map(function (feature) {
                                 var timeSpan = feature.attributes["EXPR_1"].split("-");
                                 var year = timeSpan[0];
-                                var duration = timeSpan[1];
+                                var ct = timeSpan[1];
                                 return {
-                                    duration: duration,
+                                    ct: ct,
                                     year: year,
                                     value: feature.attributes.value
                                 };
@@ -154,16 +154,16 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                                     statisticType: "count"
                                 })
                             ];
-                            query.groupByFieldsForStatistics = ["year + '-' + DurationClass"];
+                            query.groupByFieldsForStatistics = ["year + '-' + CtClass"];
                             return [4 /*yield*/, layer.queryFeatures(query)];
                         case 1:
                             queryResponse = _a.sent();
                             responseChartData = queryResponse.features.map(function (feature) {
                                 var timeSpan = feature.attributes["EXPR_1"].split("-");
                                 var year = timeSpan[0];
-                                var duration = timeSpan[1];
+                                var ct = timeSpan[1];
                                 return {
-                                    duration: duration,
+                                    ct: ct,
                                     year: year,
                                     value: feature.attributes.value
                                 };
@@ -175,10 +175,10 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
         }
         function createDataObjects(data) {
             var formattedChartData = [];
-            constants_1.durations.forEach(function (duration, t) {
+            constants_1.cts.forEach(function (ct, t) {
                 constants_1.years.forEach(function (year, s) {
                     var matches = data.filter(function (datum) {
-                        return datum.year === year && datum.duration === duration;
+                        return datum.year === year && datum.ct === ct;
                     });
                     formattedChartData.push({
                         col: t,
@@ -209,7 +209,7 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "esri/layers/Fea
                         portalItem: {
                             id: "f9e348953b3848ec8b69964d5bceae02"
                         },
-                        outFields: ["DurationClass", "year"]
+                        outFields: ["CtClass", "year"]
                     });
                     countiesLayer = new FeatureLayer({
                         title: "counties",
