@@ -2,34 +2,71 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>TimeSlider with timeOffset </title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-     <title>Souht Durham Region Housin(2010-2019)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>South Durham Region Housing</title>
 <!--using Sass: many useful features such as variables, and functions -->    
-      
-    <link rel="stylesheet"href="https://js.arcgis.com/4.15/esri/themes/dark-red/main.css"/>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css"/>
+  
     <script src="https://js.arcgis.com/4.15/"></script>
-     <link rel="stylesheet" href="style.css">  
-      <script >src="app/style.js" </script>
-  </head>
-
-  <body>
-    <div id="mapid"></div>
-    <div id="timeSlider"></div>
-    <div id="info" class="esri-widget">
-      <div class="esri-widget__heading">
-        <h4>Souht Durham Region Housing From 2010 to 2019 </h4>
-      </div>
-      <div id="month"></div>
-      <br />
-      <canvas
-        id="fireChart"
-        height="250"
-        width="300"
-        class="esri-widget"
-      ></canvas>
+<!-- AJAX libraris to include Chart.js SRI: sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script> -->
+    
+     
+    <link rel="stylesheet" href="app/main.css">  
+      <!--
+    <script>
+      var locationPath = location.pathname.replace(/\/[^\/]+$/, "");
+      window.dojoConfig = {
+        deps:['app/main'],
+        packages: [
+          {
+            name: "app",
+            location: locationPath + '/app',
+            main: 'main'
+          }
+        ]
+      };
+    </script> 
+  --> 
+    <script src="app/datalayers.js"></script> 
+</head>
+<body>
+  <div id="appHeader">
+    <div class="headerLogo">
+      <img alt="logo" src="https://assets.cmhc-schl.gc.ca/sf/project/cmhc/home/logo.png?rev=4e8ba127-3c2d-4ea9-98c0-1a213b0bfa10&h=51&la=en&w=115" width="115" height="51" />
     </div>
+    <div class="headerTitle">
+      <span id="headerTitleSpan">South Durham Region Housing Units (2010-2019)</span>
+      <div id="subHeaderTitleSpan" class="subHeaderTitle">Canada Mortgage and Housing Corporation</div>
+    </div>
+  </div>
+  
+  <div id="mapid" ></div>
+  <div  id="titleId"> South Durham Region Housing Units From 2010 to 2019 </div>
+    <div id="HomeButton"></div>
+    <div id="layerList"></div>
+    <div id="timeSlider"></div>
+    <!--
+  <div id="infoDiv" class="esri-widget">
+      <div><b>South Durham Region Housing Units 2010 to 2019</b></div>
+      <br />
+      <div id="statsDiv" class="esri-widget"></div>
+    </div>
+ 
+    <div id="chTitle" > 
+      <div class="esri-widget__heading" > South Durham Region Housing Units 2010 to 2019 </div>
+    <div id="monthDiv"></div>
+      <br/> <canvas id="barchart" height="250" width="600" class="esri-widget"></canvas>
+    </div> -->
+  <footer>
+    <div class="footer-bottom">
+      <span>Canada Mortgage and Housing Corporation (CMHC) &copy; <script src="app/copyright.js"></script></span>
+      <span id="Canada_logo">
+        <a href="https://www.cmhc-schl.gc.ca/en">
+          <img src="https://assets.cmhc-schl.gc.ca/sf/project/cmhc/home/csps_canadawordmark_blackred.png?rev=a8042423-97e6-487b-ade8-0b803c5b1ac1&h=58&w=240&la=en" alt="Canada" title>
+        </a>
+      </span>
+    </div>
+  </footer>
   </body>
 </html>
